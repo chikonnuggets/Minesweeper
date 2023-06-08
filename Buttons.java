@@ -14,7 +14,7 @@ public class Buttons {
 		frame.setLayout(new GridLayout(row, col));
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	frame.setSize(540,300);
+    frame.setSize(540,300);
 		field = Generator.generate(row, col, mine);
 		buttons = new JButton[row][col];
 		for (int i = 0; i < field.length; i++) {
