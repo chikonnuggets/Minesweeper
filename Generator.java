@@ -3,12 +3,17 @@ import java.util.*;
 public class Generator {
 	public static String[][] generate(int row, int col, int numMines) {
 		String[][] field = new String[row][col];
+		for (int i = 0; i < field.length; i++) {
+			for (int j = 0; j < field[0].length; j++) {
+				field[i][j] = "";
+			}
+		}
 		int numOfSpots = row * col;
 		Random r = new Random();
 		int n = r.nextInt(numOfSpots);
 		while (numMines > 0) {
 			int rowOfMine = n / col;
-			int colOfMine = n % col - 1;
+			int colOfMine = n % col;
 			if (field[rowOfMine][colOfMine].equals("mine")) {
 				n = r.nextInt(numOfSpots);
 			} else {
@@ -49,7 +54,9 @@ public class Generator {
 						num++;
 					}
 				}
-				field[i][j] = "" + num;
+				if (!field[i][j].equals("mine")) {
+					field[i][j] = "" + num;
+				}
 			}
 		}
 		return field;
