@@ -13,6 +13,7 @@ public class Main {
       System.out.println("too many mines try again");
       mines = input.nextInt();
     }
-    Buttons game = new Buttons(false, row, col, mines);
+    Buttons gam = new Buttons(false, row, col, mines);
   }
+  //hello, this is just to test sonething
 }
