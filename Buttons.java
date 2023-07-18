@@ -21,6 +21,7 @@ public class Buttons {
 			for (int j = 0; j < field[0].length; j++) {
 				buttons[i][j] = new JButton("");
 				if (field[i][j].equals("mine")) {
+					buttons[i][j].setActionCommand("" + count);
 					buttons[i][j].addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							System.out.println("You lose");
@@ -37,6 +38,10 @@ public class Buttons {
 							int col = n % field[0].length;
 							buttons[row][col].setText(field[row][col]);
 							buttons[row][col].setEnabled(false);
+							if (checkWin()) {
+								System.out.println("You win!");
+								System.exit(0);
+							}
 						}
 					});
 				}
@@ -44,5 +49,22 @@ public class Buttons {
 				count++;
 			}
 		}
+	}
+
+	public boolean checkWin() {
+		for (JButton[] b: buttons) {
+			for (JButton v: b) {
+				String num = v.getActionCommand();
+				int n = Integer.parseInt(num);
+				int row = n / field[0].length;
+				int col = n % field[0].length;
+				if (!field[row][col].equals("mine")) {
+					if (v.isEnabled()) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
 	}
 }
